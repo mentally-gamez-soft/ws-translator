@@ -1,0 +1,36 @@
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | Docker
+  | maintenance-scripts
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[project]
+name = "ws-translator"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.1.1",
+    "flask-swagger-ui>=5.21.0",
+    "googletrans>=4.0.2",
+    "pre-commit>=4.2.0",
+    "translators>=6.0.1",
+]
