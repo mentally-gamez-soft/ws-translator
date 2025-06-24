@@ -1,0 +1,11 @@
+services:
+  app_container_dev:
+    build: ../../../
+    command: python -m flask --app application run -h 0.0.0.0
+    container_name: app_container_dev
+    image: "${DOCKERREGISTRY}/${DOCKERREPOSITORY}:${APP_NAME}-${APP_ENV}-${APP_VERSION}"
+    ports:
+      - 5001:5000
+    env_file:
+      - .env
+      - app.version.env
