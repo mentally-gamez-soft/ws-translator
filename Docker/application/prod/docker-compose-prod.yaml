@@ -1,0 +1,29 @@
+services:
+  app_container:
+    build: ../../../
+    command: gunicorn --bind 0.0.0.:${GUNICORN_PORT} -- workers 6 "app:application"
+    container_name: app_container
+    image: "${DOCKERREGISTRY}/${DOCKERREPOSITORY}:${APP_NAME}-${APP_ENV}-${APP_VERSION}"
+    expose:
+      - ${GUNICORN_PORT}
+    networks:
+      app_bridge:
+        aliases:
+          - application_name_network
+    env_file:
+      - .env
+      - app.version.env
+  
+  nginx:
+    build: ../../nginx/production
+    container_name: nginx 
+    ports:
+      - 83:80
+    networks:
+      - app_bridge
+    depends_on:
+      - app_container
+  
+networks:
+  app_bridge:
+    driver: bridge

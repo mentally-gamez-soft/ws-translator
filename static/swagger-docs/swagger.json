@@ -1,0 +1,24 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "translator webservice",
+      "description": "A webservice to translate text from various source.",
+      "version": "0.0.1"
+    },
+    "basePath": "/Service-Name/api/v0.0.1",
+    "paths": {
+      "/": {
+          "get": {
+            "description": "Sanity check to show service is up.",
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful operation"
+              }
+            }
+          }
+        }       
+    }
+  }
