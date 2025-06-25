@@ -8,6 +8,7 @@ def validate_env_config(app_config: Config):
     required_vars = [
         "APP_NAME",
         "APP_VERSION",
+        "APP_ENV",
         "SECRET_KEY",
         "MEDIA_DIR",
         "POSTS_IMAGES_DIR",
