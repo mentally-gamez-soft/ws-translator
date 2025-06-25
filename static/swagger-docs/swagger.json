@@ -19,6 +19,56 @@
               }
             }
           }
-        }       
+        },
+      "/translate":{
+        "post":{
+          "description": "The endpoint to translate text strings to a target language.",
+          "consumes":[
+            "application/json"
+          ],
+          "summary": "Translate some text",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "paragraphes",
+              "in": "body",
+              "description": "The list of text to translate",
+              "required": true,
+              "type": "array",
+              "items":{
+                "type":"string"
+              }
+            },
+            {
+              "name": "target_language",
+              "in": "body",
+              "description": "The destination language to translate.",
+              "required": true,
+              "type": "string"
+            }
+          ], 
+          "responses":{
+            "200":{
+              "description":"The resulting translated text.",
+              "properties":{
+                "status":{
+                  "type":"string"
+                },
+                "translated_text":{
+                  "type":"array",
+                  "items":{
+                    "type":"string"
+                  }
+                }
+              }
+            },
+            "500":{
+              "description":"Technical server error."
+            }
+          }
+        }
+      }       
     }
   }

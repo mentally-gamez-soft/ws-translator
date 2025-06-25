@@ -1,8 +1,11 @@
 """TranslatorService: A service for translating text using Google Translate API."""
 
 import asyncio
+import logging
 
 from googletrans import Translator
+
+logger = logging.getLogger(__name__)
 
 
 class TranslatorService:
@@ -33,7 +36,7 @@ class TranslatorService:
         """
         if not text:
             raise ValueError("No text provided for translation.")
-        result = await self.translator.translate(text, dest=dest)
+        result = await self.translator.translate(dest, text)
         return result.text
 
     async def batch_translate(
@@ -79,11 +82,14 @@ class TranslatorService:
         Returns:
             list[str]: The translated text or list of translated texts based on the mode.
         """
+        logger.info(
+            f"Executing translation in {mode} mode to {dest} with text: {text} and texts: {texts}"
+        )
         if mode == "single":
             return [
                 asyncio.run(self.translate(dest, text)),
             ]
         elif mode == "batch":
-            return asyncio.run(self.batch_translate(dest, texts))
+            return asyncio.run(self.batch_translate(dest=dest, texts=texts))
         else:
             raise ValueError("Invalid mode. Use 'single' or 'batch'.")

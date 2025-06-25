@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:3456/Service-Name/api/v0.0.1
+
+### Get all products
+GET {{baseUrl}}
+Accept: application/json
+
+### Subscribe as an artist
+POST {{baseUrl}}/translate
+Content-Type: application/json
+X-CSRF-TOKEN: ImY0NDg2NTM4NWE1OGZkYTI0OWQzN2VhMjdmN2JkZTI2NzYwMTIwNzAi.aFwzyw.E8KkHDnLwiDmLn8hPcoS_3K_zHo
+Accept-Language: en-US
+
+{
+  "paragraphes":["Hello you.", "How are you","That will bring some problems."],
+  "target_language": "es"
+}
