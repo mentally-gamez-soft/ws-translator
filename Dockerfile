@@ -36,6 +36,8 @@ COPY --from=builder /usr/src/py-req/requirements.txt .
 RUN pip install --upgrade pip \
 && pip install --no-cache ./wheels/*
 
+COPY config ./config
 COPY application.py .
 COPY core ./core
 COPY static ./static
+RUN mkdir ./logs

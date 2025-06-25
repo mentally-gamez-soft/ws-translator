@@ -1,9 +1,9 @@
 services:
   app_container:
     build: ../../../
-    command: gunicorn --bind 0.0.0.:${GUNICORN_PORT} -- workers 6 "app:application"
+    command: gunicorn --bind 0.0.0.0:${GUNICORN_PORT} --workers 6 "application:app"
     container_name: app_container
-    image: "${DOCKERREGISTRY}/${DOCKERREPOSITORY}:${APP_NAME}-${APP_ENV}-${APP_VERSION}"
+    image: "${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${APP_NAME}-${APP_ENV}-${APP_VERSION}"
     expose:
       - ${GUNICORN_PORT}
     networks:
@@ -13,9 +13,10 @@ services:
     env_file:
       - .env
       - app.version.env
+      - app.name.env
   
   nginx:
-    build: ../../nginx/production
+    build: ../../nginx/prod
     container_name: nginx 
     ports:
       - 83:80
