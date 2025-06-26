@@ -49,6 +49,7 @@ def default():
     )
 
 
+@api_bp.route("/translate", methods=["POST"])
 @api_bp.route(ROUTE_TRANSLATE, methods=["POST"])
 @api_bp.route(ROUTE_TRANSLATE + "/", methods=["POST"])
 def translate():
